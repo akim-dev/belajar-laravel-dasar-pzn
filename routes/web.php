@@ -17,18 +17,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function() {
+Route::get('/home', function () {
     return view('home');
 });
-Route::get('/home-lagi', function() {
-    return view('home-lagi',['name' => 'Paijo']);
+Route::get('/home-lagi', function () {
+    return view('home-lagi', ['name' => 'Paijo']);
 });
 
 // route dengan redirect
 Route::redirect('/home', 'home-lagi');
 
 // fallback
-Route::fallback(function(){
+Route::fallback(function () {
     return "404 by PZN";
 });
 
+Route::view('/hello', 'hello', ['name' => 'Eko']);
+
+Route::get('/hello-again', function () {
+    return view('hello-again', ['name' => 'Eko']);
+});
+
+// route parameters
+
+Route::get('/products/{id}', function ($productId) {
+    return "Product : " . $productId;
+});
+Route::get('/products/{product}/items/{item}', function ($productId, $itemId) {
+    return "Product : " . $productId . ",Items : " . $itemId;
+});
+Route::get ('/categories/{id}', function($categoryId){
+    return "Category $categoryId";
+});
