@@ -27,3 +27,8 @@ Route::get('/home-lagi', function() {
 // route dengan redirect
 Route::redirect('/home', 'home-lagi');
 
+// fallback
+Route::fallback(function(){
+    return "404 by PZN";
+});
+
