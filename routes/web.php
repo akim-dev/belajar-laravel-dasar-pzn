@@ -20,4 +20,10 @@ Route::get('/', function () {
 Route::get('/home', function() {
     return view('home');
 });
+Route::get('/home-lagi', function() {
+    return view('home-lagi',['name' => 'Paijo']);
+});
+
+// route dengan redirect
+Route::redirect('/home', 'home-lagi');
 

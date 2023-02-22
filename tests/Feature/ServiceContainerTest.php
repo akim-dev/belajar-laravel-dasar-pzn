@@ -57,7 +57,7 @@ class ServiceContainerTest extends TestCase
     // $person = $this->app->make(Person::class);
 
     $this->app->instance(Person::class,function($app){
-        return new Person ("Akim", "John"   );
+        return new Person ("Akim", "John");
     });
     $person = $this->app->make(Person::class);//$person
     $person1 = $this->app->make(Person::class);//$person
@@ -68,5 +68,7 @@ class ServiceContainerTest extends TestCase
     self::assertEquals('John', $person->lastName);
     self::assertSame($person1, $person);
    }
+
+
 
 }
