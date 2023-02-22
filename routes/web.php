@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,13 @@ Route::get('/products/{product}/items/{item}', function ($productId, $itemId) {
 });
 Route::get ('/categories/{id}', function($categoryId){
     return "Category $categoryId";
-});
+})->where('id','[0-9]+');
+
+
+// dari controller
+Route::get('/controller/hello',[HelloController::class,'hello']);
+Route::get('/controller/hello/request',[\App\Http\Controllers\HelloController::class,'request']);
+
+//Router and test
+Route::get('/input/hello',[\App\Http\Controllers\InputController::class,'hello']);
+Route::post('/input/hello',[\App\Http\Controllers\InputController::class,'hello']);
