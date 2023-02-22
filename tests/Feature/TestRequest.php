@@ -22,4 +22,20 @@ class TestRequest extends TestCase
     $this->get('/input/hello?name=Eko')->assertSeeText('hello Eko');
     $this->post('/input/hello',['name' => 'Eko'])->assertSeeText('Hello Eko');
     }
+
+    public function testInputAll(){
+        $this->post('/input/hello/all',[
+            'name' => [
+                'first' => 'Eko',
+                'last' => 'Khannedy'
+            ]
+        ])->assertSeeText('name')->assertSeeText('first');
+
+
+    }
+
+
+
+
+
 }
