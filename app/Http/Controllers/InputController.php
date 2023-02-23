@@ -19,13 +19,14 @@ class InputController extends Controller
         return "hello " . $firstName;
     }
 
-    public function testInput(){
-        $this->post('/input/hello/first',[
+    public function testInput()
+    {
+        $this->post('/input/hello/first', [
             'name' => [
-                'first'=> 'Eko',
-                'last'=> 'Khannedy'
+                'first' => 'Eko',
+                'last' => 'Khannedy'
             ]
-            ])->assertSeeText('Hello Eko');
+        ])->assertSeeText('Hello Eko');
     }
 
     public function helloInput(Request $request): string
@@ -46,16 +47,25 @@ class InputController extends Controller
     public function inputType(Request $request): string
     {
         $name = $request->input('name');
-        $married =$request->boolean('married');
+        $married = $request->boolean('married');
         $birth_date = $request->date('birth_date', 'Y-m-d');
-
-
-       return json_encode([
-        'name' => $name,
-        'married' => $married,
-        'birth_date' => $birth_date->format('Y-m-d')
-       ]);
-
+        return json_encode([
+            'name' => $name,
+            'married' => $married,
+            'birth_date' => $birth_date->format('Y-m-d')
+        ]);
     }
 
+
+    //methode filter only dan except
+    public function filterOnly(Request $request): string
+    {
+        $name = $request->only('name.first', 'name.last');
+        return json_encode($name);
+    }
+    public function filterExcept(Request $request): string
+    {
+        $user = $request->except('admin');
+        return json_encode($user);
+    }
 }

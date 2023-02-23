@@ -18,24 +18,20 @@ class TestRequest extends TestCase
             ->assertSeeText('plain/text');
     }
 
-    public function testInput() {
-    $this->get('/input/hello?name=Eko')->assertSeeText('hello Eko');
-    $this->post('/input/hello',['name' => 'Eko'])->assertSeeText('Hello Eko');
+    public function testInput()
+    {
+        $this->get('/input/hello?name=Eko')->assertSeeText('hello Eko');
+        $this->post('/input/hello', ['name' => 'Eko'])->assertSeeText('Hello Eko');
     }
 
-    public function testInputAll(){
-        $this->post('/input/hello/all',[
+    public function testInputAll()
+    {
+        $this->post('/input/hello/all', [
             'name' => [
                 'first' => 'Eko',
                 'last' => 'Khannedy'
             ]
-        ])->assertSeeText('name')->assertSeeText('first');
-
-
+        ])->assertSeeText('name')->assertSeeText('first')
+            ->assertSeeText('last')->assertSeeText('Eko')->assertSeeText('Khannedy');
     }
-
-
-
-
-
 }

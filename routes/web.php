@@ -4,16 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,9 +21,9 @@ Route::get('/home-lagi', function () {
 Route::redirect('/home', 'home-lagi');
 
 // fallback
-Route::fallback(function () {
-    return "404 by PZN";
-});
+// Route::fallback(function () {
+//     return "404 by PZN";
+// });
 
 Route::view('/hello', 'hello', ['name' => 'Eko']);
 
@@ -65,3 +56,10 @@ Route::post('/input/hello/input',[\App\Http\Controllers\InputController::class,'
 Route::post('/input/hello/array',[\App\Http\Controllers\InputController::class,'helloArray']);
 
 Route::post('/input/type',[\App\Http\Controllers\InputController::class, 'inputType']);
+Route::post('/input/filterOnly',[\App\Http\Controllers\InputController::class, 'filterOnly']);
+Route::post('/input/filterExcept',[\App\Http\Controllers\InputController::class, 'filterExcept']);
+Route::post('/input/filterExcept',[InputController::class, 'filterExcept']);
+
+
+// file upload
+Route::post('/file/upload',[\App\Http\Controllers\FileController::class, 'upload']);
